@@ -6,64 +6,7 @@
       fixed
       app
     >
-      <v-list dense>
-        <template v-for="item in items">
-          <v-layout
-            v-if="item.heading"
-            :key="item.heading"
-            row
-            align-center
-          >
-            <v-flex xs6>
-              <v-subheader v-if="item.heading">
-                {{ item.heading }}
-              </v-subheader>
-            </v-flex>
-            <v-flex xs6 class="text-xs-center">
-              <a href="#!" class="body-2 black--text">EDIT</a>
-            </v-flex>
-          </v-layout>
-          <v-list-group
-            v-else-if="item.children"
-            v-model="item.model"
-            :key="item.text"
-            :prepend-icon="item.model ? item.icon : item['icon-alt']"
-            append-icon=""
-          >
-            <v-list-tile slot="activator">
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  {{ item.text }}
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile
-              v-for="(child, i) in item.children"
-              :key="i"
-              @click=""
-            >
-              <v-list-tile-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  {{ child.text }}
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list-group>
-          <v-list-tile v-else :key="item.text" @click="">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>
-                {{ item.text }}
-              </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </template>
-      </v-list>
+      
     </v-navigation-drawer>
     <v-toolbar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
@@ -104,11 +47,38 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          
-        </v-layout>
-      </v-container>
+        <v-container grid-list-md text-xs-center>
+            <v-layout row wrap>
+                <v-flex v-for="i in 3" :key="`3${i}`" xs12 md3>
+                    <v-card>
+                        <v-img
+                        class="white--text"
+                        height="200px"
+                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                        >
+                        <v-container fill-height fluid>
+                            <v-layout fill-height>
+                            <v-flex xs12 align-end flexbox>
+                                <span class="headline">Top 10 Australian beaches</span>
+                            </v-flex>
+                            </v-layout>
+                        </v-container>
+                        </v-img>
+                        <v-card-title>
+                        <div>
+                            <span class="grey--text">Number 10</span><br>
+                            <span>Whitehaven Beach</span><br>
+                            <span>Whitsunday Island, Whitsunday Islands</span>
+                        </div>
+                        </v-card-title>
+                        <v-card-actions>
+                        <v-btn flat color="orange">Share</v-btn>
+                        <v-btn flat color="orange">Explore</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
     </v-content>
     <v-btn
       fab
@@ -125,44 +95,12 @@
 </template>
 
 <script>
-const searchYoutube = require('youtube-api-v3-search');
+
 export default {
     data: () => ({
       dialog: true,
       drawer: null,
       searchKey: "",
-      items: [
-        { icon: 'contacts', text: 'Contacts' },
-        { icon: 'history', text: 'Frequently contacted' },
-        { icon: 'content_copy', text: 'Duplicates' },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'Labels',
-          model: true,
-          children: [
-            { icon: 'add', text: 'Create label' }
-          ]
-        },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' }
-          ]
-        },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
-      ]
     }),
     props: {
       source: String
