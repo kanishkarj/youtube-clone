@@ -1,5 +1,10 @@
+import router from '../router'
+
 export default {
-    // updateStoreAuth (state, auth) {
-    //     state.auth = auth;
-    // }
+    updateSearchResults (state, val) {
+        val = JSON.parse(val);
+        state.searchResults = val;
+        console.log(val);
+        router.push({ name: 'search'})
+    }
 }
