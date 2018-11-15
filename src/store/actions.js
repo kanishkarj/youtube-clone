@@ -6,14 +6,14 @@ const API_KEY = 'AIzaSyBsy4H9e1oxzgqAYLxfeUNdnCYjPinNUyk';
 
 export default {
     youtubeSearch({commit}, query) {
-        console.log(query);
         var params = {
             type : "",
             q : query,
-            maxResults: "25",
-            part: "snippet,contentDetails,statistics",
+            maxResults: "50",
+            part: "snippet",
             key: API_KEY,
         };
+        console.log(query);
         axios.get(SEARCH_URL,{
             params
         }).then((data) => {

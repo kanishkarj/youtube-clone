@@ -58,6 +58,11 @@
 </template>
 
 <script>
+import router from './router'
+
+function addslashes( str ) {
+    return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+}
 
 export default {
     data: () => ({
@@ -73,7 +78,10 @@ export default {
       },
     methods: {
       searchQuery() {
-        this.$store.dispatch('youtubeSearch',this.searchKey);
+        // this.$store.dispatch('youtubeSearch',this.searchKey);
+        // console.log(router)
+        this.$router.push({ name: 'search', params: { key: this.searchKey.split(' ').join('+') }});
+        this.$router.go(this.$router.currentRoute);
       }
     }
   }
