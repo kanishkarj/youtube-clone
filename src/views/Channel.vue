@@ -4,14 +4,15 @@
              <v-flex xs12 sm12>
                 <v-card>
                     <v-layout row ma-2 pa-2 pt-5>
-                        <v-flex xs2 sm2>
+                        <v-flex xs3 sm3>
                             <v-img :src="channel.snippet.thumbnails.high.url" aspect-ratio="2"/>
                         </v-flex>
-                        <v-flex xs10 sm10>
+                        <v-flex xs9 sm9>
                             <div class="headline">
                                 {{channel.snippet.title}}
                             </div>
                             <v-divider></v-divider>
+                            <br>
                             <div class="body-1">
                                 {{channel.snippet.description}}
                             </div>
@@ -30,7 +31,7 @@
                             xs4
                             pa-2
                             >
-                        <v-card height="100%" hover @click.native="openVideo(item.id)">
+                        <v-card height="100%" hover @click.native="openPlaylist(item)">
                             <v-img
                             :src="item.snippet.thumbnails.high.url"
                             aspect-ratio="2"
@@ -93,8 +94,14 @@ export default {
     },
     methods: {
         markdownToHTML: library.markdownToHTML,
+        openPlaylist(item) {
+            // console.log(item.id);
+            this.$router.push({ name: 'playlist', params: { id: item.id}});
+            this.$router.go(this.$router.currentRoute);
+        },
     },
     filters: {
+        kindFilter: library.kindFilter,        
         convTime: library.convTime,
     }
 }

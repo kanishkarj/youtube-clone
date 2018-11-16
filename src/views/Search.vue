@@ -52,7 +52,7 @@
                                     <div class="body-2">
                                         {{item.snippet.channelTitle}}
                                     </div> 
-                                    <div>{{item.snippet.description}}</div>
+                                    <div>{{item.snippet.description | trimStr}}</div>
                                 </div>
                             </v-card-title>
                         </v-card>
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+const library = require('../plugins/library');
 
 function TitleCompare(a,b) {
     return a.snippet.title > b.snippet.title; 
@@ -163,6 +164,8 @@ export default {
                 this.$router.push({ name: 'video', params: { id: item.videoId}});
             } else if (item.kind.search("channel") != -1) {
                 this.$router.push({ name: 'channel', params: { id: item.channelId}});
+            } else if (item.kind.search("playlist") != -1) {
+                this.$router.push({ name: 'playlist', params: { id: item.playlistId}});
             }
             this.$router.go(this.$router.currentRoute);
         }
@@ -181,19 +184,9 @@ export default {
         }
     },
     filters: {
-        convTime: function (value) {
-            if (!value) return ''
-            value = value.toString()
-            var dt = new Date(value);
-            return formatDate(dt);
-        },
-        kindFilter (value) {
-            if (!value) return ''
-            value = value.toString()
-            var tmp = value.search("#");
-            var returnString = value.slice(tmp+1,value.length);
-            return returnString.charAt(0).toUpperCase() + returnString.slice(1);
-        }
+        convTime: library.convTime,
+        trimStr: library.trimStr,
+        kindFilter: library.kindFilter,        
     }
 }
 </script>

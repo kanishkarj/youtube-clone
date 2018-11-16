@@ -5,4 +5,7 @@ export default {
     CurrentlyPlaying : null,
     CurrentChannel : null,
     CurrentChannelPlaylists : null,
+    CurrentPlaylist : null,
+    CurrentPlaylistVideos : null,
+    CurrentPlaylistData: null
 }

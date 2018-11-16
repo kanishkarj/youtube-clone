@@ -4,7 +4,7 @@ const SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
 const VIDEO_URL = 'https://www.googleapis.com/youtube/v3/videos'
 const CHANNEL_URL = 'https://www.googleapis.com/youtube/v3/channels'
 const PLAYLIST_URL = 'https://www.googleapis.com/youtube/v3/playlists'
-
+const PLAYLIST_VIDEO_URL = "https://www.googleapis.com/youtube/v3/playlistItems";
 const API_KEY = 'AIzaSyBsy4H9e1oxzgqAYLxfeUNdnCYjPinNUyk';
 
 export default {
@@ -58,6 +58,32 @@ export default {
             params
         }).then((data) => {
             commit('updateCurrentPlaylist',JSON.stringify(data.data));
+        })
+    },
+    getPlaylistVideos({commit}, id) {
+        var params = {
+            playlistId : id,
+            maxResults: "50",
+            part: "snippet",
+            key: API_KEY,
+        };
+        axios.get(PLAYLIST_VIDEO_URL,{
+            params
+        }).then((data) => {
+            commit('updateCurrentPlaylistVideo',JSON.stringify(data.data));
+        })
+    },
+    getPlaylist({commit}, id) {
+        var params = {
+            id : id,
+            maxResults: "50",
+            part: "snippet",
+            key: API_KEY,
+        };
+        axios.get(PLAYLIST_URL,{
+            params
+        }).then((data) => {
+            commit('updateCurrentPlaylistData',JSON.stringify(data.data.items[0]));
         })
     }
 }

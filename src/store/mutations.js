@@ -16,5 +16,13 @@ export default {
     updateCurrentPlaylist (state, val) {
         val = JSON.parse(val);
         state.CurrentChannelPlaylists = val.items;
-    }
+    },
+    updateCurrentPlaylistVideo (state, val) {
+        val = JSON.parse(val);
+        state.CurrentPlaylist = val.items;
+    },
+    updateCurrentPlaylistData (state, val) {
+        val = JSON.parse(val);
+        state.CurrentPlaylistData = val;
+    },
 }

@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 import Search from './views/Search.vue'
 import Video from './views/Video.vue'
 import Channel from './views/Channel.vue'
+import Playlist from './views/Playlist.vue'
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/channel/:id',
       name: 'channel',
       component: Channel
+    },
+    {
+      path: '/playlist/:id',
+      name: 'playlist',
+      component: Playlist
     }
   ]
 })

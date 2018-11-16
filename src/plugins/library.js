@@ -34,3 +34,15 @@ export function markdownToHTML (value) {
     value = value.toString()
     return converter.makeHtml(value);
 }
+
+export function trimStr (val) {
+    return val.slice(0,Math.min(100,val.length)) + "...";
+}
+
+export function kindFilter (value) {
+    if (!value) return ''
+    value = value.toString()
+    var tmp = value.search("#");
+    var returnString = value.slice(tmp+1,value.length);
+    return returnString.charAt(0).toUpperCase() + returnString.slice(1);
+}
