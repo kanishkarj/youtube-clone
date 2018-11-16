@@ -51,7 +51,7 @@ export default {
       searchQuery(arg) {
         if(arg.keyCode == undefined || arg.keyCode == 13) {
           this.$router.push({ name: 'search', params: { key: this.searchKey.split(' ').join('+') }});
-          this.$router.go(this.$router.currentRoute);
+          // this.$router.go(this.$router.currentRoute);
         }
         
       }

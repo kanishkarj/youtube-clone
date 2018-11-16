@@ -81,7 +81,10 @@ export default {
         },
         storeResPl () {
             return this.$store.state.CurrentPlaylistData;
-        },
+        }, 
+        searchId() {
+            return this.$route.params.id;
+        }
     },
     watch: {
         storeRes (val,_) {
@@ -90,13 +93,17 @@ export default {
         },
         storeResPl (val) {
             this.playlistData = val;
+        },
+        searchId(val) {
+            this.$store.dispatch('getPlaylist',this.$route.params.id);
+            this.$store.dispatch('getPlaylistVideos',this.$route.params.id);
         }
     },
     methods: {
         markdownToHTML: library.markdownToHTML,
         openVideo(item) {
             this.$router.push({ name: 'video', params: { id: item.snippet.resourceId.videoId}});
-            this.$router.go(this.$router.currentRoute);
+            // this.$router.go(this.$router.currentRoute);
         }
     },
     filters: {

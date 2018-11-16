@@ -91,6 +91,9 @@ export default {
         storePlaylist () {
             return this.$store.state.CurrentChannelPlaylists;
         },
+        searchId() {
+            return this.$route.params.id;
+        }
     },
     watch: {
         storeRes (val,_) {
@@ -99,13 +102,17 @@ export default {
         storePlaylist (val) {
             this.playlists = val; 
         },
+        searchId(val) {
+            this.$store.dispatch('getChannelInfo',val);
+            this.$store.dispatch('getChannelPlaylists',val);
+        }
     },
     methods: {
         markdownToHTML: library.markdownToHTML,
         openPlaylist(item) {
             // console.log(item.id);
             this.$router.push({ name: 'playlist', params: { id: item.id}});
-            this.$router.go(this.$router.currentRoute);
+            // this.$router.go(this.$router.currentRoute);
         },
     },
     filters: {

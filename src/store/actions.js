@@ -20,6 +20,7 @@ export default {
         axios.get(SEARCH_URL,{
             params
         }).then((data) => {
+            console.log(data.data);
             commit('updateSearchResults',JSON.stringify(data.data.items));
         })
     },

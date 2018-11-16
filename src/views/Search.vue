@@ -104,12 +104,11 @@ export default {
       selectedFilters:[],
     }),
     mounted() {
-        console.log(this.$route.params.key);
-        this.$store.dispatch('youtubeSearch',this.$route.params.key);
+        this.$store.dispatch('youtubeSearch',this.searchKey);
+        console.log(val);
         
         this.searchResults = this.$store.state.searchResults; 
         this.searchResultsDisplay = this.searchResults; 
-
     },
     methods: {
         SortList() {
@@ -167,12 +166,14 @@ export default {
             } else if (item.kind.search("playlist") != -1) {
                 this.$router.push({ name: 'playlist', params: { id: item.playlistId}});
             }
-            this.$router.go(this.$router.currentRoute);
         }
     },
     computed: {
         storeRes () {
             return this.$store.state.searchResults;
+        },
+        searchKey() {
+            return this.$route.params.key;
         }
     },
     watch: {
@@ -181,6 +182,14 @@ export default {
         },
         searchResults(val) {
             this.searchResultsDisplay = this.searchResults; 
+        },
+        searchKey(val) {
+            this.$store.dispatch('youtubeSearch',val);
+            console.log(val);
+            
+            this.searchResults = this.$store.state.searchResults; 
+            this.searchResultsDisplay = this.searchResults; 
+
         }
     },
     filters: {

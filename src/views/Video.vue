@@ -42,12 +42,18 @@ export default {
     computed: {
         storeRes () {
             return this.$store.state.CurrentlyPlaying;
+        },
+        searchId () {
+            return this.$route.params.id;
         }
     },
     watch: {
         storeRes (val,_) {
             this.video = val; 
-        }, 
+        },
+        searchId (val) {
+            this.$store.dispatch('getVideoInfo',val);
+        }
     },
     methods: {
         markdownToHTML: library.markdownToHTML,
