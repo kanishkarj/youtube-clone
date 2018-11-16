@@ -2,5 +2,7 @@
 export default {
     searchResults : null,
     temp: "sdf",
-    CurrentlyPlaying : null
+    CurrentlyPlaying : null,
+    CurrentChannel : null,
+    CurrentChannelPlaylists : null,
 }

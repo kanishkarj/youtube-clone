@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Search from './views/Search.vue'
 import Video from './views/Video.vue'
+import Channel from './views/Channel.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/video/:id',
       name: 'video',
       component: Video
+    },
+    {
+      path: '/channel/:id',
+      name: 'channel',
+      component: Channel
     }
   ]
 })
