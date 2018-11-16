@@ -12,6 +12,14 @@
                                 {{channel.snippet.title}}
                             </div>
                             <v-divider></v-divider>
+                            <v-layout class="body-2" row ma-1>
+                                <v-flex xs6 sm6>
+                                    {{channel.statistics.subscriberCount}} Subscribers
+                                </v-flex>
+                                <v-flex xs6 sm6>
+                                    {{channel.statistics.videoCount}} Videos
+                                </v-flex>
+                            </v-layout>
                             <br>
                             <div class="body-1">
                                 {{channel.snippet.description}}

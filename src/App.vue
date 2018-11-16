@@ -8,7 +8,7 @@
       fixed
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-        <span class="hidden-sm-and-down">Youtube</span>
+        <span @click="$router.push({ name: 'home'})" class="hidden-sm-and-down">Youtube</span>
       </v-toolbar-title>
       <v-text-field
         v-model="searchKey"
@@ -17,6 +17,7 @@
         hide-details
         label="Search"
         class="hidden-sm-and-down"
+        @keyup="searchQuery"
       ></v-text-field>
       <v-btn icon @click="searchQuery">
         <v-icon>search</v-icon>
@@ -33,11 +34,6 @@
 </template>
 
 <script>
-import router from './router'
-
-function addslashes( str ) {
-    return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
-}
 
 export default {
     data: () => ({
@@ -52,11 +48,12 @@ export default {
 
       },
     methods: {
-      searchQuery() {
-        // this.$store.dispatch('youtubeSearch',this.searchKey);
-        // console.log(router)
-        this.$router.push({ name: 'search', params: { key: this.searchKey.split(' ').join('+') }});
-        this.$router.go(this.$router.currentRoute);
+      searchQuery(arg) {
+        if(arg.keyCode == undefined || arg.keyCode == 13) {
+          this.$router.push({ name: 'search', params: { key: this.searchKey.split(' ').join('+') }});
+          this.$router.go(this.$router.currentRoute);
+        }
+        
       }
     }
   }
