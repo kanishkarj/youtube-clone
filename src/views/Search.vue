@@ -22,31 +22,41 @@
             @change="setFilters">
         </v-select>
     </v-layout>
-        <v-flex xs12 ma-3 v-for="(item,index) in searchResultsDisplay" :key="index" >
-            <v-card color="grey darken-4">
-              <v-layout>
-                <v-flex xs5>
-                  <v-img
-                    :src="item.snippet.thumbnails.high.url"
-                    height="200px"
-                  ></v-img>
-                </v-flex>
-                <v-flex xs7>
-                  <v-card-title primary-title>
-                    <div>
-                      <div class="headline">{{item.snippet.title}}</div>
-                      <div class="body-2">{{item.snippet.channelTitle }}</div>
-                      <v-divider/>
-                      <div class="body-2">{{item.snippet.publishedAt | convTime}}</div>
-                      <br>
-                      <div class="body-1">{{item.snippet.description}}</div>
-                    </div>
-                  </v-card-title>
-                  <v-btn @click="openVideo(item.id.videoId)" >view</v-btn>
-                </v-flex>
-              </v-layout>
+        <v-layout>
+            <v-flex xs12 sm12>
+            <v-card>
+                <v-container grid-list-xs fluid>
+                <v-layout row wrap>
+                    <v-flex
+                    v-for="(item,index) in searchResultsDisplay"
+                    :key="index"
+                    xs4
+                    pa-2
+                    >
+                        <v-card height="100%" hover @click.native="openVideo(item.id)">
+                            <v-img
+                            :src="item.snippet.thumbnails.high.url"
+                            aspect-ratio="2"
+                            ></v-img>
+                            <v-card-title primary-title>
+                                <div>
+                                    <div class="body-2">
+                                        {{item.snippet.publishedAt | convTime}}
+                                    </div> 
+                                    <h3 class="headline mb-0">{{item.snippet.title}}</h3>
+                                    <div class="body-2">
+                                        {{item.snippet.channelTitle}}
+                                    </div> 
+                                    <div>{{item.snippet.description}}</div>
+                                </div>
+                            </v-card-title>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+                </v-container>
             </v-card>
-          </v-flex>
+            </v-flex>
+        </v-layout>
     </v-flex>
   </v-layout>
 </template>
@@ -142,8 +152,9 @@ export default {
 
             this.searchResultsDisplay = this.searchResults.slice(min,cutLen);
         },
-        openVideo(id) {
-            this.$router.push({ name: 'video', params: { id: id}});
+        openVideo(item) {
+            // console.log(item);
+            this.$router.push({ name: 'video', params: { id: item.videoId}});
             this.$router.go(this.$router.currentRoute);
         }
     },
