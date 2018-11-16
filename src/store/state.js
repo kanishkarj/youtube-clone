@@ -1,5 +1,6 @@
 
 export default {
     searchResults : null,
-    temp: "sdf"
+    temp: "sdf",
+    CurrentlyPlaying : null
 }

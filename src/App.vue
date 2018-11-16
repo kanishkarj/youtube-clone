@@ -1,8 +1,8 @@
 <template>
-  <v-app id="inspire" dark>
+  <v-app id="inspire">
     <v-toolbar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
-      color="deep-purple darken-4"
+      color="deep-purple darken-2"
       dark
       app
       fixed

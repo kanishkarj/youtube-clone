@@ -42,6 +42,7 @@
                       <div class="body-1">{{item.snippet.description}}</div>
                     </div>
                   </v-card-title>
+                  <v-btn @click="openVideo(item.id.videoId)" >view</v-btn>
                 </v-flex>
               </v-layout>
             </v-card>
@@ -140,6 +141,10 @@ export default {
                 cutLen = this.searchResults.length;
 
             this.searchResultsDisplay = this.searchResults.slice(min,cutLen);
+        },
+        openVideo(id) {
+            this.$router.push({ name: 'video', params: { id: id}});
+            this.$router.go(this.$router.currentRoute);
         }
     },
     computed: {
